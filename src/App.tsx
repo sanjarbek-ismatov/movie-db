@@ -1,45 +1,34 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-
+import Ui from "./components/ui";
+import "./styles/main.scss";
+import React, { useState, useEffect } from "react";
+import { Props } from "./components/ui";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [array, setArray] = useState<Props | any>();
+  const [text, setText] = useState<string>("Terminator");
+  useEffect(() => {
+    fetcher();
+  }, []);
+  const fetcher = async () => {
+    await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=f5eb67dea1a91e8974405abc90a7ae23&language=en-US&query=${text}&page=1&include_adult=true`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setArray(data);
+        console.log(data);
+      })
+      .catch((e) => console.log(e));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <Ui
+      text={text}
+      handleChange={(e) => {
+        setText(e.target.value);
+      }}
+      handleSubmit={fetcher}
+      array={array}
+    />
+  );
 }
 
-export default App
+export default App;
