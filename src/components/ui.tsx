@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 export interface Props {
   text: string;
@@ -14,9 +12,20 @@ export interface Props {
 function Ui({ text, handleChange, handleSubmit, array }: Props) {
   return (
     <main>
-      <input type="text" onChange={handleChange} value={text} />
-      <button onClick={handleSubmit}>
-        <FontAwesomeIcon icon={faSearch} />
+      <h1 className="logo">The Movie DB</h1>
+      <input
+        className="search"
+        type="text"
+        onChange={handleChange}
+        value={text}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            handleSubmit();
+          }
+        }}
+      />
+      <button className="icon" onClick={handleSubmit}>
+        Search
       </button>
       <div className="results">
         {array &&
@@ -24,11 +33,13 @@ function Ui({ text, handleChange, handleSubmit, array }: Props) {
             return (
               el.poster_path && (
                 <div className="film">
-                  <p className="title">{el.title}</p>
                   <img
                     className="film-image"
                     src={`http://image.tmdb.org/t/p/w1280/${el.poster_path}`}
                   />
+                  <div className="titles">
+                    <p className="title">{el.title}</p>
+                  </div>
                 </div>
               )
             );
