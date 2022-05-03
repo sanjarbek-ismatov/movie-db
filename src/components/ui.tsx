@@ -13,20 +13,22 @@ function Ui({ text, handleChange, handleSubmit, array }: Props) {
   return (
     <main>
       <h1 className="logo">The Movie DB</h1>
-      <input
-        className="search"
-        type="text"
-        onChange={handleChange}
-        value={text}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            handleSubmit();
-          }
-        }}
-      />
-      <button className="icon" onClick={handleSubmit}>
-        Search
-      </button>
+      <div className="input">
+        <input
+          className="search"
+          type="text"
+          onChange={handleChange}
+          value={text}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit();
+            }
+          }}
+        />
+        <button className="icon" onClick={handleSubmit}>
+          Search
+        </button>
+      </div>
       <div className="results">
         {array &&
           array.results.map((el: any) => {
