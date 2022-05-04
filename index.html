@@ -2,12 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <link rel="shortcut icon" href="./src/images/icon.png" />
+    <meta property="og:image" content="./src/images/icon.png" />
+    <meta property="og:title" content="Movie search App" />
+    <meta property="og:description" content="Movie search app by Sanjarbek" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie App</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="main"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      let name = prompt("Salom, ismingizni kiriting");
+      alert(
+        `Qadrli ${
+          name || "Foydalanuvchi"
+        }. Bazi kontentlarni filtrlash yoqilgan. Iltimos qilardim to'g'ri maqsadlarda foydalanishingizni!`
+      );
+    </script>
   </body>
 </html>
