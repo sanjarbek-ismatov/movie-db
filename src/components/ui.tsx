@@ -5,7 +5,7 @@ export interface Props {
   handleSubmit: () => void;
   array: {
     results: {
-      title: string;
+      title?: string;
     }[];
   };
 }

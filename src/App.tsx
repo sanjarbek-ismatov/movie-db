@@ -10,7 +10,7 @@ function App() {
   }, []);
   const fetcher = async () => {
     await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=f5eb67dea1a91e8974405abc90a7ae23&language=en-US&query=${text}&page=1&include_adult=false`
+      `https://api.themoviedb.org/3/search/movie?api_key=f5eb67dea1a91e8974405abc90a7ae23&language=en-US&query=${text}&page=1&include_adult=true`
     )
       .then((res) => res.json())
       .then((data) => {
